@@ -1,0 +1,13 @@
+Bank Pilot v4.8
+
+The network starts untrained on a new installation. Existing device checkpoints remain compatible; Train > Reset net starts over. The old trained model is not bundled.
+
+Training options offers 24, 36, 48 or 64 complete games per update, six workers, and Light/Extra/Off paired feedback. Forty-eight remains the default. A training update contains multiple Adam minibatch steps. Training mixes current self-play, both protected champions, up to 12 archived models, scripts and the refined relative-target lookup policy. The lookup policy uses the remaining horizon for 10/15-round games and its original rule for 20 rounds. It does not run Monte Carlo.
+
+Historical neural league is the default benchmark. The selected 10,000 games are split equally between a frozen reference archive of up to six networks and a rotating recent/champion pool. Candidate and incumbent face identical opponents, dice and seats in separate games. Win share measures final first place, splitting ties. The graph uses only the fixed reference pool. Group sizes and 10/15/20 round lengths are balanced. The archive is created from available networks at the first league benchmark and remains fixed. Very early benchmarks may have only one reference network; training continues to build newer archived opponents.
+
+A clear paired gain requires fresh-seed confirmation and no average loss beyond two percentage points in either pool. Tests below 660 games cannot select champions. The first established league champion can be the current model when no incumbent exists. A champion is the best confirmed candidate under this benchmark, not proof of optimality or a full ranking of every historical network.
+
+Original scripted benchmark opponents, seeds and scoring use the unchanged bankbench-46 protocol. Scripted and league histories/champions are separate. Benchmarks never automatically reset learning weights or optimizer. Play prefers league best once established; original scripted best is used until then. Progress & models can select either champion or latest for Play and manually restore a selected champion. KL guards during updates remain active.
+
+Model schema banknet-2, 45,316 parameters, exact-rule overrides and neural inference are unchanged. Workers embed every dependency including the lookup table. Initial online installation is required; wait for Offline ready v4.8. Offline WebKit Linux checks cover fresh 64-game training, benchmarks, both histories, checkpoint import/export, solo/multiplayer engines and compact phone layouts. Physical iPhone hardware was not available.
